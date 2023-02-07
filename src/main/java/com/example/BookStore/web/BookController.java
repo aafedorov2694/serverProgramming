@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.BookStore.domain.Book;
 import com.example.BookStore.domain.BookRepository;
+import com.example.BookStore.domain.Category;
+import com.example.BookStore.domain.CategoryRepository;
 
 import java.util.Optional;
 
@@ -23,6 +25,8 @@ import org.springframework.ui.Model;
 public class BookController {
 	@Autowired
 	private BookRepository repository;
+	@Autowired
+	private CategoryRepository catrepository;
 	
 	/*@RequestMapping("/index")
 	public String greeting() {
@@ -39,7 +43,9 @@ public class BookController {
 	
 	@GetMapping("/addbook")
 	public String addBook(Model model) {
-		model.addAttribute("book", new Book("Title", "Author", 1999, "ISBN", (float) 0));
+		
+		model.addAttribute("book", new Book());
+		model.addAttribute("categories", catrepository.findAll());
 		return "addBook";
 	}
 	
@@ -61,6 +67,7 @@ public class BookController {
 	public String modify(@PathVariable("id") long id, Model model) {
 
 	Book book =	repository.findById(id);
+	model.addAttribute("categories", catrepository.findAll());
 	model.addAttribute("book", book);
 		return "editBook";
 			

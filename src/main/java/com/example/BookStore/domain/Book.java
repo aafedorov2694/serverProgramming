@@ -11,11 +11,14 @@ public class Book {
 	 private int publicationYear;
 	 private String isbn;
 	 private Float price;
+	 @ManyToOne(cascade = CascadeType.MERGE)
+	 @JoinColumn(name = "categoryid")
+	 private Category category;
 	
 	 public Book(){
 		   super();
 		}
-	public Book(String title, String author, int publicationYear, String isbn, Float price) {
+	public Book(String title, String author, int publicationYear, String isbn, Float price, Category category) {
 		
 		
 		this.title = title;
@@ -23,6 +26,7 @@ public class Book {
 		this.publicationYear = publicationYear;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 	public Long getId() {
 		return id;
@@ -60,11 +64,20 @@ public class Book {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
+	
+	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-				+ ", isbn=" + isbn + ", price=" + price + "]";
+		return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear + ", isbn=" + isbn
+				+ ", price=" + price + ", category=" + category + "]";
 	}
+	
 	
 
 }
