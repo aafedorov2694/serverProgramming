@@ -1,14 +1,23 @@
 package com.example.BookStore.domain;
+import jakarta.persistence.*;
 
+@Entity
 public class Book {
-	private String title;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	 private String title;
 	 private String author;
 	 private int publicationYear;
 	 private String isbn;
 	 private Float price;
 	
-	 public Book(String title, String author, int publicationYear, String isbn, Float price) {
+	 public Book(){
+		   super();
+		}
+	public Book(String title, String author, int publicationYear, String isbn, Float price) {
 		super();
+		
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicationYear;
@@ -47,8 +56,8 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear + ", isbn=" + isbn
-				+ ", price=" + price + "]";
+		return "Book [title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
+				+ ", isbn=" + isbn + ", price=" + price + "]";
 	}
 	
 
