@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.BookStore.domain.Book;
 import com.example.BookStore.domain.BookRepository;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,11 +50,26 @@ public class BookController {
 	}
 	
 	@RequestMapping("/delete/{id}")
-	public String delete(@PathVariable("id") Long id, Model model) {
+	public String delete(@PathVariable("id") long id, Model model) {
 
 		repository.deleteById(id);
 		return "redirect:../booklist";
 			
+	}
+	
+	@RequestMapping("/edit/{id}")
+	public String modify(@PathVariable("id") long id, Model model) {
+
+	Book book =	repository.findById(id);
+	model.addAttribute("book", book);
+		return "editBook";
+			
+	}
+	
+	@PostMapping("/update/{id}")
+	public String editBook(@PathVariable("id") long id, Book book) {
+		repository.save(book);
+		return "redirect:../booklist";
 	}
 
 }
