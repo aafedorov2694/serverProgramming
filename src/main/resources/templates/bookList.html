@@ -22,11 +22,15 @@
 	                	<td th:text="${book.author}"></td>
 	                	<td th:text="${book.publicationYear}"></td>
 	                	<td th:text="${book.isbn}"></td>
+	                	<td>
+	                		<a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+	                	</td>
+	                	
 	                        
 	                </tr>
                 </table>
-                
+                <a href="/addbook">Add book</a>
                 
         </body>
 </html>
-~         
+         
