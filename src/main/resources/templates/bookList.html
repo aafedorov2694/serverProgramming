@@ -4,16 +4,19 @@
         <head>
                 <title>Server Programming</title>
                 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         </head>
         <body>
         	
                 <h2>Bookstore</h2>
-                <table>
+                <table class="table table-striped">
                 	<tr>
                 		<th>Title</th>
                 		<th>Author</th>
                 		<th>Year</th>
                 		<th>ISBN</th>
+                		<th></th>
+                		<th></th>
                 	</tr>
 	                
 	                <tr th:each="book : ${books}">
@@ -23,7 +26,7 @@
 	                	<td th:text="${book.publicationYear}"></td>
 	                	<td th:text="${book.isbn}"></td>
 	                	<td>
-	                		<a th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
+	                		<a  class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a>
 	                	</td>
 	                	<td>
 	                		<a th:href="@{/edit/{id}(id=${book.id})}">Edit</a>
@@ -32,7 +35,7 @@
 	                        
 	                </tr>
                 </table>
-                <a href="/addbook">Add book</a>
+                <a href="/addbook" class="btn btn-success">Add book</a>
                 
         </body>
 </html>
