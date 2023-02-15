@@ -81,12 +81,12 @@ public class BookController {
 	}
 
 	//REST endpoints
-	@GetMapping("/api/booklist")
+	@GetMapping("/rest/booklist")
 	public @ResponseBody List<Book> bookListRest(){
 		return (List<Book>)repository.findAll();
 	}
 
-	@GetMapping("/api/booklist/{id}")
+	@GetMapping("/rest/booklist/{id}")
 	public @ResponseBody Book bookRest(@PathVariable("id") long id, Book book){
 		 Book bookrest = repository.findById(id);
 		 return bookrest;
