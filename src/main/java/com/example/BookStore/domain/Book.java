@@ -19,8 +19,6 @@ public class Book {
 		   super();
 		}
 	public Book(String title, String author, int publicationYear, String isbn, Float price, Category category) {
-		
-		
 		this.title = title;
 		this.author = author;
 		this.publicationYear = publicationYear;

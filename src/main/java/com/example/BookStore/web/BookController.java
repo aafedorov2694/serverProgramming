@@ -12,6 +12,7 @@ import com.example.BookStore.domain.BookRepository;
 import com.example.BookStore.domain.Category;
 import com.example.BookStore.domain.CategoryRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,4 +80,15 @@ public class BookController {
 		return "redirect:../booklist";
 	}
 
+	//REST endpoints
+	@GetMapping("/api/booklist")
+	public @ResponseBody List<Book> bookListRest(){
+		return (List<Book>)repository.findAll();
+	}
+
+	@GetMapping("/api/booklist/{id}")
+	public @ResponseBody Book bookRest(@PathVariable("id") long id, Book book){
+		 Book bookrest = repository.findById(id);
+		 return bookrest;
+	}
 }
